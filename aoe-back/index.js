@@ -154,11 +154,25 @@ app.get('/api/civs', (req, res) => {
 })
 
 app.get('/api/civs/:id', (req, res) => {
-  console.log(req.params.id)
-  // Haetaan civi
-  // haetaan unit-tiedot
-  // funktio, joka valitsee parhaan gold unitin ja unit compin
-  // palautetaan resultti
+  const id = parseInt(req.params.id);
+  const civ = civilizations.find(c => c.id === id);
+
+  if (!civ) {
+    return res.status(404).send('Civilization not found');
+  }
+
+  const units = civ.units;
+  let highestValueUnit = '';
+  let highestValue = 0;
+
+  for (const unit in units) {
+    if (units[unit] > highestValue) {
+      highestValue = units[unit];
+      highestValueUnit = unit;
+    }
+  }
+
+  res.send({ unit: highestValueUnit, value: highestValue });
   res.json(civs)
 })
 
