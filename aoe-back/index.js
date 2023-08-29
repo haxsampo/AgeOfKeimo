@@ -46,61 +46,71 @@ civs = ['Aztecs',
         'Vietnamese',
         'Vikings']
 
-const sivs = [
+const civilizations = [
   {
     id: 1,
     name: 'britons',
-    militia: 3,
-    spearman: 3,
-    skirmisher: 3,
-    archer: 5,
-    carcher: 3,
-    scout: 3,
-    knight: 3,
+    units: [
+      {militia: 3,
+      spearman: 3,
+      skirmisher: 3,
+      archer: 5,
+      carcher: 3,
+      scout: 3,
+      knight: 3}
+    ]
   },
   { 
     id: 2,
     name: 'franks',
-    militia: 3,
-    spearman: 3,
-    skirmisher: 3,
-    archer: 3,
-    carcher: 3,
-    scout: 3,
-    knight: 5,
+    units: [
+      {militia: 3,
+      spearman: 3,
+      skirmisher: 3,
+      archer: 5,
+      carcher: 3,
+      scout: 3,
+      knight: 3}
+    ]
   },
   { 
     id: 3,
     name: 'mongols',
-    militia: 3,
-    spearman: 3,
-    skirmisher: 3,
-    archer: 3,
-    carcher: 5,
-    scout: 3,
-    knight: 5,
+    units: [
+      {militia: 3,
+      spearman: 3,
+      skirmisher: 3,
+      archer: 5,
+      carcher: 3,
+      scout: 3,
+      knight: 3}
+    ]
   },
   { 
     id: 4,
     name: 'mayans',
-    militia: 3,
-    spearman: 3,
-    skirmisher: 3,
-    archer: 5,
-    carcher: 3,
-    scout: 3,
-    knight: 5,
+    units: [
+      {militia: 3,
+      spearman: 3,
+      skirmisher: 3,
+      archer: 5,
+      carcher: 3,
+      scout: 3,
+      knight: 3}
+    ]
   },
   { 
     id: 5,
     name: 'goths',
-    militia: 5,
-    spearman: 3,
-    skirmisher: 3,
-    archer: 3,
-    carcher: 3,
-    scout: 3,
-    knight: 5,
+    units: [
+      {militia: 3,
+      spearman: 3,
+      skirmisher: 3,
+      archer: 5,
+      carcher: 3,
+      scout: 3,
+      knight: 3}
+    ]
   }
 ]
 
