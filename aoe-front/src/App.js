@@ -11,11 +11,6 @@ const App = () => {
     civService.getAll().then(civs =>
       setCivs(civs))
   }, [])
-
-  useEffect(() => {
-    civService.getCiv().then(civ =>
-      setTesti(civ))
-  }, [])
   
   const changePage = ({ page, chosenCiv}) => {
     console.log("props: ",page, chosenCiv)
