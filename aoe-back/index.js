@@ -144,12 +144,8 @@ app.get('/api/civs', (req, res) => {
 })
 
 app.get('/api/civs/:id', (req, res) => {
-  console.log(req.params.id)
-  // Haetaan civi
-  // haetaan unit-tiedot
-  // funktio, joka valitsee parhaan gold unitin ja unit compin
-  // palautetaan resultti
-  res.json(civs)
+
+  res.json(corrCiv)
 })
 
 const PORT = process.env.PORT || 3001
