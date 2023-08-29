@@ -2,14 +2,9 @@
 
 ## AoE2 app
 
-## työaikakirjanpito
+## Asennusohjeet
 
-| päivä | aika | mitä tein             |
-| :---: | :--- | :-------------------- |
-| 28.8. | 1.5  | projektin alustus yms |
-| 29.8. | 0.5  | ui pohdinta           |
-|       | 1    | nappihommat ja sivu   |
-|       |      |                       |
-|       |      |                       |
+Luo aoe-front -kansioon tiedosto: .ENV ja lisää tiedostoon REACT_APP_BACKEND_URL_DEV = http://localhost:XXXX
+- XXXX on se missä bäkkäri pyörii (yleensä 3001)
 
-Yht: 3
+Aja npm install front- sekä back-kansioissa
