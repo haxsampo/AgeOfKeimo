@@ -137,33 +137,59 @@ const civilizations = [
 const units = [
   {
     name: 'militia',
-    gold: 1
+    isGoldUnit: True,
+    counters: [], // ids of units countered by militia
+    counteredBy: [] // ids of units that counter militia
   },
   {
     name: 'spearman',
-    gold: 0
+    isGoldUnit: False,
+    counters: [],
+    counteredBy: []
   },
   {
-    name: 'skirmisher',
-    gold: 0
-  },
-  {
-    name: 'archer',
-    gold: 1
-  },
-  {
-    name: 'carcher',
-    gold: 1
+    name: 'eagle',
+    isGoldUnit: True,
+    counters: [],
+    counteredBy: []
   },
   {
     name: 'scout',
-    gold: 0
+    isGoldUnit: False,
+    counters: [],
+    counteredBy: []
   },
   {
     name: 'knight',
-    gold: 1
+    isGoldUnit: True,
+    counters: [],
+    counteredBy: []
+  },
+  {
+    name: 'camel',
+    isGoldUnit: True,
+    counters: [],
+    counteredBy: []
+  },
+  {
+    name: 'archer',
+    isGoldUnit: True,
+    counters: [],
+    counteredBy: []
+  },
+  {
+    name: 'skirmisher',
+    isGoldUnit: False,
+    counters: [],
+    counteredBy: []
   }
-]
+  {
+    name: 'carcher',
+    isGoldUnit: True,
+    counters: [],
+    counteredBy: []
+  }
+];
 
 app.get('/', (req, res) => {
   res.send('<h1>Hello World!</h1>')
