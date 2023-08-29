@@ -1,7 +1,7 @@
 import imageObj from "../utils/imageloader"
 import civService from "../services/civs"
 import { useState } from 'react'
-
+import CivButton from "./CivButton"
 
 const CivsList = (props) => { //{changePage}
   const [valittu, setValittu] = useState('')
@@ -11,16 +11,19 @@ const CivsList = (props) => { //{changePage}
   const imageNames = Object.keys(imageObj)
 
   const buttFunc = (civ) => {
-    const chosenCiv = civ.split(".")[0]
+    const chosenCiv = civ.split(".")[0].split("_")[1]
+    console.log(chosenCiv)
     let idnro = 0
     const ids = {
       'mongols': 3,
       'britons': 1,
-      'goths': 5
-    }
+      'goths': 5,
+      'franks': 2,
+      'mayans':4
 
+    }
     civService.getCiv(ids[chosenCiv]).then(civ =>
-      setTesti(civ))
+     setTesti(civ))
 
     /* if(!civ1 && !civ2) {
       setCiv1(chosenCiv)
@@ -43,12 +46,12 @@ const CivsList = (props) => { //{changePage}
       <p>Choose your civ </p>
       <div>
         {imageNames.map((n) => (
-          <button key={n}>
-            <img src={imageObj[n]}
-              alt = {n}
-              onClick={() => buttFunc(n)}
-            />
-          </button>
+          <CivButton
+            key={n}
+            name={n}
+            image={imageObj[n]}
+            buttFunc={buttFunc}
+          />
         ))}
       </div>
 
