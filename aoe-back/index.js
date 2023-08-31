@@ -220,19 +220,22 @@ app.get('/api/civs', (req, res) => {
 
 app.get('/api/civs/:id', (req, res) => {
   const id = parseInt(req.params.id);
+  // civilization that matches the requested ID
   const civ = civilizations.find(c => c.id === id);
 
-
+    // error handling
   if (!civ) {
     return res.status(404).send('Civilization not found');
   }
 
-  // Unitit jotka civillä on saatavilla
+  // The units object for that civ and their values
   const civUnits = civ.units[0];
   console.log(civUnits)
+
   let highestValueUnit = '';
   let highestValue = 0;
 
+  // saving the highest-valued gold unit of the requested civ to the above variables
   for (const [unitId, value] of Object.entries(civUnits)) {
     const unit = units.find(u => u.id === parseInt(unitId));
     if (unit.isGoldUnit && value > highestValue) {
@@ -244,13 +247,18 @@ app.get('/api/civs/:id', (req, res) => {
   console.log(highestValueUnit)
   console.log(highestValue)
 
-  const highestUnit = units.find(u => u.name === highestValueUnit);
-  const counteredBy = highestUnit.counteredBy.map(counterId => {
+  // getting the details of the power unit
+  const highestUnitDetails = units.find(u => u.name === highestValueUnit);
+  console.log(highestUnitDetails)
+
+  let counterCounters = []
+  
+  const counteredBy = highestUnitDetails.counteredBy.map(counterId => {
     const counterUnit = units.find(u => u.id === counterId);
     return {
       id: counterId,
       name: counterUnit.name,
-      value: civUnits[counterId] || null
+      counterCounters: [{'keimo': 4, 'juuhhan': 5}]
     };
   });
 
