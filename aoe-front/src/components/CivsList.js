@@ -22,10 +22,10 @@ const CivsList = (props) => {
 
     }
     civService.getCiv(ids[chosenCiv]).then(civ => {
-      console.log("aaaaa", civ)
+      console.log("backend response: ", civ)
       setCiv1([{civ:chosenCiv, 
                 coreunit:civ.highestValueUnit,
-                counters: civ.counters}])
+                counters: civ.counteredBy}])
       changePage({page:'civguide', chosenCiv:chosenCiv})
     })
 

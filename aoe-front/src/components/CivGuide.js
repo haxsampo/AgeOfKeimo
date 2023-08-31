@@ -3,7 +3,7 @@ import CounterBox from "./CounterBox"
 import './guide.css'
 
 const CivGuide = (props) => {
-
+  console.log("civguide:", props.civ1)
   return(
     <div>
       <div className='rowC'>
