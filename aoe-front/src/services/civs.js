@@ -7,10 +7,8 @@ const getAll = async () => {
 }
 
 const getCiv = async (idnro) => {
-  console.log("idnro: ", idnro)
   const res = await axios.get(baseUrl+'/'+idnro)
-  console.log(res.data)
-  return '1'
+  return res.data
 }
 
 export default {getAll, getCiv}

@@ -52,15 +52,15 @@ const civilizations = [
     name: 'Britons',
     units: [
       {
-        militia: 5,
-        spearman: 5,
-        eagle: null,
-        scout: 4,
-        knight: 4,
-        camel: null,
-        archer: 7,
-        skirmisher: 5,
-        carcher: 3
+        1: 5,
+        2: 5,
+        3: null,
+        4: 4,
+        5: 4,
+        6: null,
+        7: 7,
+        8: 5,
+        9: 3
       }
     ]
   },
@@ -69,15 +69,15 @@ const civilizations = [
     name: 'Franks',
     units: [
       {
-        militia: 5,
-        spearman: 5,
-        eagle: null,
-        scout: 5,
-        knight: 6,
-        camel: null,
-        archer: 4,
-        skirmisher: 5,
-        carcher: 3
+        1: 5,
+        2: 5,
+        3: null,
+        4: 5,
+        5: 6,
+        6: null,
+        7: 4,
+        8: 5,
+        9: 3
       }
     ]
   },
@@ -86,15 +86,15 @@ const civilizations = [
     name: 'Goths',
     units: [
       {
-        militia: 7,
-        spearman: 7,
-        eagle: null,
-        scout: 5,
-        knight: 5,
-        camel: null,
-        archer: 4,
-        skirmisher: 5,
-        carcher: 3
+        1: 7,
+        2: 7,
+        3: null,
+        4: 5,
+        5: 5,
+        6: null,
+        7: 4,
+        8: 5,
+        9: 3
       }
     ]
   },
@@ -103,15 +103,15 @@ const civilizations = [
     name: 'Mayans',
     units: [
       {
-        militia: 4,
-        spearman: 5,
-        eagle: 5,
-        scout: null,
-        knight: null,
-        camel: null,
-        archer: 6,
-        skirmisher: 5,
-        carcher: null
+        1: 4,
+        2: 5,
+        3: 5,
+        4: null,
+        5: null,
+        6: null,
+        7: 6,
+        8: 5,
+        9: null
       }
     ]
   },
@@ -120,15 +120,15 @@ const civilizations = [
     name: 'Mongols',
     units: [  
       {
-        militia: 4,
-        spearman: 5,
-        eagle: null,
-        scout: 6,
-        knight: 5,
-        camel: 5,
-        archer: 5,
-        skirmisher: 5,
-        carcher: 6
+        1: 4,
+        2: 5,
+        3: null,
+        4: 6,
+        5: 5,
+        6: 5,
+        7: 5,
+        8: 5,
+        9: 6
       }
     ]
   }
@@ -220,25 +220,51 @@ app.get('/api/civs', (req, res) => {
 
 app.get('/api/civs/:id', (req, res) => {
   const id = parseInt(req.params.id);
+  // civilization that matches the requested ID
   const civ = civilizations.find(c => c.id === id);
-  const unitList = units
 
+    // error handling
   if (!civ) {
     return res.status(404).send('Civilization not found');
   }
 
-  const units = civ.units;
-  let powerUnit = '';
-  let powerUnitValue = 0;
+  // The units object for that civ and their values
+  const civUnits = civ.units[0];
+  console.log(civUnits)
 
-  for (const unit in units) {
-    if (units[unit] > powerUnitValue) {
-      powerUnitValue = units[unit];
-      powerUnit = unit;
+  let highestValueUnit = '';
+  let highestValue = 0;
+
+  // saving the highest-valued gold unit of the requested civ to the above variables
+  for (const [unitId, value] of Object.entries(civUnits)) {
+    const unit = units.find(u => u.id === parseInt(unitId));
+    if (unit.isGoldUnit && value > highestValue) {
+      highestValue = value;
+      highestValueUnit = unit.name;
     }
   }
 
-  res.send({ unit: highestValueUnit, value: highestValue });
+  console.log(highestValueUnit)
+  console.log(highestValue)
+
+  // getting the details of the power unit
+  const highestUnitDetails = units.find(u => u.name === highestValueUnit);
+  console.log(highestUnitDetails)
+
+  let counterCounters = []
+  
+  const counteredBy = highestUnitDetails.counteredBy.map(counterId => {
+    const counterUnit = units.find(u => u.id === counterId);
+    return {
+      id: counterId,
+      name: counterUnit.name,
+      counterCounters: [{'keimo': 4, 'juuhhan': 5}]
+    };
+  });
+
+  console.log(counteredBy)
+
+  res.json({ highestValueUnit, counteredBy });
 })
 
 const PORT = process.env.PORT || 3001
