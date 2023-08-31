@@ -173,7 +173,6 @@ app.get('/api/civs/:id', (req, res) => {
   }
 
   res.send({ unit: highestValueUnit, value: highestValue });
-  res.json(civs)
 })
 
 const PORT = process.env.PORT || 3001
