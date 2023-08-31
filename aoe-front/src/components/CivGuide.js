@@ -8,7 +8,7 @@ const CivGuide = (props) => {
     <div>
       <div className='rowC'>
         <BuildOrderBox civ1={props.civ1}/>
-        <CounterBox/>
+        <CounterBox counters={props.civ1[0].counters}/>
       </div>
     </div>
   )
