@@ -4,6 +4,6 @@ function importAll(r) {
   return images
 }
 
-const images = importAll(require.context('../images', false, /\.(png|jpe?g|svg|webp)$/))
+const images = importAll(require.context('../../art/civ_symbols', false, /\.(png|jpe?g|svg|webp)$/))
 
 export default images
