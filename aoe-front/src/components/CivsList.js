@@ -12,11 +12,10 @@ const CivsList = (props) => {
 
   const buttFunc = (civ) => {
     const chosenCiv = civ.split(".")[0].split("_")[1]
-    console.log(chosenCiv)
     const ids = {
-      'mongols': 3,
+      'mongols': 5,
       'britons': 1,
-      'goths': 5,
+      'goths': 3,
       'franks': 2,
       'mayans':4
 
