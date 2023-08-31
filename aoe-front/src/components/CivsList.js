@@ -22,22 +22,13 @@ const CivsList = (props) => {
 
     }
     civService.getCiv(ids[chosenCiv]).then(civ => {
-      setCiv1([{civ:chosenCiv, unit:civ.unit}])
+      console.log("aaaaa", civ)
+      setCiv1([{civ:chosenCiv, 
+                coreunit:civ.highestValueUnit,
+                counters: civ.counters}])
       changePage({page:'civguide', chosenCiv:chosenCiv})
     })
 
-    /* if(!civ1 && !civ2) {
-      setCiv1(chosenCiv)
-      console.log("civ1:", chosenCiv)
-      return
-    }
-    if(!civ2) {
-      setCiv2(chosenCiv)
-      console.log("civ2:", chosenCiv)
-      changePage({page:"matchup"})
-      return
-    } */
-    //console.log("error in Civslist -> shouldn't be here")  
   }
 
   
