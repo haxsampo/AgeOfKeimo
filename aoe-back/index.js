@@ -137,55 +137,55 @@ const civilizations = [
 const units = [
   {
     name: 'militia',
-    isGoldUnit: True,
+    isGoldUnit: true,
     counters: [], // ids of units countered by militia
     counteredBy: [] // ids of units that counter militia
   },
   {
     name: 'spearman',
-    isGoldUnit: False,
+    isGoldUnit: false,
     counters: [],
     counteredBy: []
   },
   {
     name: 'eagle',
-    isGoldUnit: True,
+    isGoldUnit: true,
     counters: [],
     counteredBy: []
   },
   {
     name: 'scout',
-    isGoldUnit: False,
+    isGoldUnit: false,
     counters: [],
     counteredBy: []
   },
   {
     name: 'knight',
-    isGoldUnit: True,
+    isGoldUnit: true,
     counters: [],
     counteredBy: []
   },
   {
     name: 'camel',
-    isGoldUnit: True,
+    isGoldUnit: true,
     counters: [],
     counteredBy: []
   },
   {
     name: 'archer',
-    isGoldUnit: True,
+    isGoldUnit: true,
     counters: [],
     counteredBy: []
   },
   {
     name: 'skirmisher',
-    isGoldUnit: False,
+    isGoldUnit: false,
     counters: [],
     counteredBy: []
-  }
+  },
   {
     name: 'carcher',
-    isGoldUnit: True,
+    isGoldUnit: true,
     counters: [],
     counteredBy: []
   }
