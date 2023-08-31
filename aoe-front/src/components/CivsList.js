@@ -3,11 +3,11 @@ import civService from "../services/civs"
 import { useState } from 'react'
 import CivButton from "./CivButton"
 
-const CivsList = (props) => { //{changePage}
+const CivsList = (props) => { 
+  const {civ1, setCiv1, changePage} = props
   const [valittu, setValittu] = useState('')
   const [testi, setTesti] = useState('')
   //const {changePage, civ1, civ2, setCiv1, setCiv2} = props
-  const {changePage} = props
   const imageNames = Object.keys(imageObj)
 
   const buttFunc = (civ) => {
@@ -22,8 +22,10 @@ const CivsList = (props) => { //{changePage}
       'mayans':4
 
     }
-    civService.getCiv(ids[chosenCiv]).then(civ =>
-     setTesti(civ))
+    civService.getCiv(ids[chosenCiv]).then(civ => {
+      setCiv1([{civ:chosenCiv, unit:civ.unit}])
+      changePage({page:'civguide', chosenCiv:chosenCiv})
+    })
 
     /* if(!civ1 && !civ2) {
       setCiv1(chosenCiv)

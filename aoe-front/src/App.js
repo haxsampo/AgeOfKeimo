@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
 import civService from './services/civs'
 import CivsList from './components/CivsList'
+import CivGuide from './components/CivGuide'
 
 const App = () => {
   const [civs, setCivs] = useState([])
+  const [civ1, setCiv1] = useState([])
+  const [counters, setCounters] = useState([])
   const [page, setPage] = useState('choose')
   const [testi, setTesti] = useState('')
 
@@ -14,7 +17,7 @@ const App = () => {
   
   const changePage = ({ page, chosenCiv}) => {
     console.log("props: ",page, chosenCiv)
-    //setPage(props)
+    setPage(page)
   }
 
   const beginning = () => {
@@ -28,12 +31,11 @@ const App = () => {
       </div>
       <h1>AoE2 app</h1>
       { page==='choose' &&
-      <CivsList changePage={changePage}/>}
-      <ul>
-        {civs.map((c) =>(
-          <li key={c} >{c}</li>
-        ))}
-      </ul>
+        <CivsList changePage={changePage} civ1={civ1} setCiv1={setCiv1}/>}
+      {page==='civguide' &&
+        <CivGuide civ1={civ1}/>
+      }
+
     </div>
   );
 }
