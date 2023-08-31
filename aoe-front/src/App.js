@@ -11,8 +11,6 @@ const App = () => {
     civService.getAll().then(civs =>
       setCivs(civs))
   }, [])
-
-  
   
   const changePage = ({ page, chosenCiv}) => {
     console.log("props: ",page, chosenCiv)
