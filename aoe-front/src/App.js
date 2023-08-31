@@ -17,8 +17,15 @@ const App = () => {
     //setPage(props)
   }
 
+  const beginning = () => {
+    setPage('choose')
+  }
+
   return (
     <div>
+      <div>
+        <button onClick={() => beginning()}>Start over</button>
+      </div>
       <h1>AoE2 app</h1>
       { page==='choose' &&
       <CivsList changePage={changePage}/>}
