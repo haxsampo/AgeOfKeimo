@@ -1,6 +1,4 @@
-# Fullstack open - projekti
-
-## AoE2 app
+# AoE2 app
 
 ## Asennusohjeet
 
