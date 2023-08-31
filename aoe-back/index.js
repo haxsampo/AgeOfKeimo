@@ -226,7 +226,10 @@ app.get('/api/civs/:id', (req, res) => {
   if (!civ) {
     return res.status(404).send('Civilization not found');
   }
+
+  // Unitit jotka civillä on saatavilla
   const civUnits = civ.units[0];
+  console.log(civUnits)
   let highestValueUnit = '';
   let highestValue = 0;
 
@@ -238,9 +241,11 @@ app.get('/api/civs/:id', (req, res) => {
     }
   }
 
+  console.log(highestValueUnit)
+  console.log(highestValue)
 
   const highestUnit = units.find(u => u.name === highestValueUnit);
-  const counters = highestUnit.counters.map(counterId => {
+  const counteredBy = highestUnit.counteredBy.map(counterId => {
     const counterUnit = units.find(u => u.id === counterId);
     return {
       id: counterId,
@@ -249,7 +254,9 @@ app.get('/api/civs/:id', (req, res) => {
     };
   });
 
-  res.json({ highestValueUnit, counters });
+  console.log(counteredBy)
+
+  res.json({ highestValueUnit, counteredBy });
 })
 
 const PORT = process.env.PORT || 3001
