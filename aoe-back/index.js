@@ -118,7 +118,7 @@ const civilizations = [
   {
     id: 5,
     name: 'Mongols',
-    units: [
+    units: [  
       {
         militia: 4,
         spearman: 5,
@@ -136,58 +136,76 @@ const civilizations = [
 
 const units = [
   {
-    name: 'militia',
+    id: 1,
+    name: 'Militia',
+    building: 'Barracks',
     isGoldUnit: true,
-    counters: [], // ids of units countered by militia
-    counteredBy: [] // ids of units that counter militia
+    counters: [2, 3, 8], // ids of units that militia counters
+    counteredBy: [7, 9] // ids of units that counter militia
   },
   {
-    name: 'spearman',
+    id: 2,
+    name: 'Spearman',
+    building: 'Barracks',
     isGoldUnit: false,
-    counters: [],
-    counteredBy: []
+    counters: [4, 5, 6],
+    counteredBy: [1, 3, 7, 8]
   },
   {
-    name: 'eagle',
+    id: 3,
+    name: 'Eagle Scout',
+    building: 'Barracks',
     isGoldUnit: true,
-    counters: [],
-    counteredBy: []
+    counters: [2, 4, 7, 8],
+    counteredBy: [1]
   },
   {
-    name: 'scout',
+    id: 4,
+    name: 'Scout',
+    building: 'Stable',
     isGoldUnit: false,
-    counters: [],
-    counteredBy: []
+    counters: [7, 8],
+    counteredBy: [1, 2, 3, 5, 6]
   },
   {
-    name: 'knight',
+    id: 5,
+    name: 'Knight',
+    building: 'Stable',
     isGoldUnit: true,
-    counters: [],
-    counteredBy: []
+    counters: [4, 7, 8, 9],
+    counteredBy: [2, 6]
   },
   {
-    name: 'camel',
+    id: 6,
+    name: 'Camel',
+    building: 'Stable',
     isGoldUnit: true,
-    counters: [],
-    counteredBy: []
+    counters: [4, 5, 8, 9],
+    counteredBy: [1, 2]
   },
   {
-    name: 'archer',
+    id: 7,
+    name: 'Archer',
+    building: 'Archery Range',
     isGoldUnit: true,
-    counters: [],
-    counteredBy: []
+    counters: [1, 2],
+    counteredBy: [3, 4, 5, 8]
   },
   {
-    name: 'skirmisher',
+    id: 8,
+    name: 'Skirmisher',
+    building: 'Archery Range',
     isGoldUnit: false,
-    counters: [],
-    counteredBy: []
+    counters: [2, 7, 9],
+    counteredBy: [1, 3, 4, 5, 6]
   },
   {
-    name: 'carcher',
+    id: 9,
+    name: 'Cavalry Archer',
+    building: 'Archery Range',
     isGoldUnit: true,
-    counters: [],
-    counteredBy: []
+    counters: [1],
+    counteredBy: [3, 5, 6, 8]
   }
 ];
 
@@ -196,25 +214,27 @@ app.get('/', (req, res) => {
 })
 
 app.get('/api/civs', (req, res) => {
-  res.json(civs)
+  console.log('request')
+  res.json(civilizations)
 })
 
 app.get('/api/civs/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const civ = civilizations.find(c => c.id === id);
+  const unitList = units
 
   if (!civ) {
     return res.status(404).send('Civilization not found');
   }
 
   const units = civ.units;
-  let highestValueUnit = '';
-  let highestValue = 0;
+  let powerUnit = '';
+  let powerUnitValue = 0;
 
   for (const unit in units) {
-    if (units[unit] > highestValue) {
-      highestValue = units[unit];
-      highestValueUnit = unit;
+    if (units[unit] > powerUnitValue) {
+      powerUnitValue = units[unit];
+      powerUnit = unit;
     }
   }
 
