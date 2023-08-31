@@ -221,13 +221,13 @@ app.get('/api/civs', (req, res) => {
 app.get('/api/civs/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const civ = civilizations.find(c => c.id === id);
-  const unitList = units
+  console.log("civ:", civ.units)
 
   if (!civ) {
     return res.status(404).send('Civilization not found');
   }
 
-  const units = civ.units;
+  const units = civ.units[0];
   let powerUnit = '';
   let powerUnitValue = 0;
 
@@ -237,8 +237,8 @@ app.get('/api/civs/:id', (req, res) => {
       powerUnit = unit;
     }
   }
-
-  res.send({ unit: highestValueUnit, value: highestValue });
+  console.log("units:",units)
+  res.send({ unit: powerUnit, value: powerUnitValue });
 })
 
 const PORT = process.env.PORT || 3001
