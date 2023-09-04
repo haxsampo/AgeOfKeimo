@@ -12,20 +12,19 @@ const CivsList = (props) => {
 
   const buttFunc = (civ) => {
     const chosenCiv = civ.split(".")[0].split("_")[1]
-    console.log(chosenCiv)
     const ids = {
-      'mongols': 3,
+      'mongols': 5,
       'britons': 1,
-      'goths': 5,
+      'goths': 3,
       'franks': 2,
       'mayans':4
 
     }
     civService.getCiv(ids[chosenCiv]).then(civ => {
-      console.log("aaaaa", civ)
+      console.log("backend response: ", civ)
       setCiv1([{civ:chosenCiv, 
                 coreunit:civ.highestValueUnit,
-                counters: civ.counters}])
+                counters: civ.counteredBy}])
       changePage({page:'civguide', chosenCiv:chosenCiv})
     })
 
